@@ -1,4 +1,6 @@
 from flask import session
+import logging
+log = logging.getLogger('werkzeug')
 
 _DEFAULT_ITEMS = [
     { 'id': 1, 'status': 'Not Started', 'title': 'List saved todo items' },
@@ -13,7 +15,9 @@ def get_items():
     Returns:
         list: The list of saved items.
     """
-    return session.get('items', _DEFAULT_ITEMS.copy())
+    existing_items = session.get('items', _DEFAULT_ITEMS.copy())
+    existing_items.sort(key=lambda item : item['status'])
+    return existing_items 
 
 
 def get_item(id):
@@ -67,3 +71,11 @@ def save_item(item):
     session['items'] = updated_items
 
     return item
+
+def remove_item(id):
+    existing_items = get_items()
+    updated_items = list(filter(lambda existing_item: existing_item['id'] != int(id), existing_items ))
+    session['items'] = updated_items
+
+
+    
