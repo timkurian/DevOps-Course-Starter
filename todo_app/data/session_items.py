@@ -47,8 +47,8 @@ def add_item(title):
     items = get_items()
 
     # Determine the ID for the item based on that of the previously added item
-    id = items[-1]['id'] + 1 if items else 0
-
+    id =  max(  item['id'] for item in items) if items else 0
+   
     item = { 'id': id, 'title': title, 'status': 'Not Started' }
 
     # Add the item to the list
