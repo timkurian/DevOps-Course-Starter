@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% block title %}To-Do App{% endblock %}
+
+{% block content %}
+  <div class="jumbotron">
+    <h1 class="display-4">Modify</h1>
+    <p class="lead">Just another to-do app.</p>
+  </div>
+
+   <div class="row">
+    <div class="col-md-12">
+      <h2>Update Todo </h2>
+      <p> The Todo : <b> {{ todo.title}}</b> is currently in status: <b>{{ todo.status }} </b> </p> </br>
+      <p> what would you like to set the status to: </p>
+      <form action="{{ url_for('update_todo')}}" method="post">
+        <input type="hidden" name="id" value="{{ todo.id }}">
+        <select type="option" name="status" value="In progress" >
+            <option value="Not started">Not started</option>
+            <option value="In progress">In progress</option>
+            <option value="Completed">Completed</option>
+
+          </select>
+        <input type="submit" value="Update" class="btn btn-info" > 
+      </form>
+    </div>
+  </div>
+  <br>
+   <div class="row">
+    <div class="col-md-12">
+      <h2>Remove todo ! </h2>
+      <p> Do you wish to remove <b>{{todo.title}} </b> ? </p>
+      <form action="{{ url_for('remove_todo') }}" method="post">
+        <input type="hidden" name="id" value="{{ todo.id }}">
+        <input type="submit" class="btn btn-danger" value="Remove">
+      </form>
+    </div>
+  </div> 
+  <br>
+  <div class="row">
+    <div class="col-md-12">
+      <h2><a href="/">Go Home</a></h2>
+    </br>
+      
+    </div>
+  </div> 
+
+{% endblock %}  
