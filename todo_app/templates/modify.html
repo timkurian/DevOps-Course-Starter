@@ -10,25 +10,37 @@
    <div class="row">
     <div class="col-md-12">
       <h2>Update Todo </h2>
-      <p> The Todo : <b> {{ todo.title}}</b> is currently in status: <b>{{ todo.status }} </b> </p> </br>
-      <p> what would you like to set the status to: </p>
-      <form action="{{ url_for('update_todo')}}" method="post">
-        <input type="hidden" name="id" value="{{ todo.id }}">
-        <select type="option" name="status" value="In progress" >
-            <option value="Not started">Not started</option>
-            <option value="In progress">In progress</option>
-            <option value="Completed">Completed</option>
+      <p> The Todo : <b> {{ todo.name}}</b> is currently in status: <b>{{ todo.status }} </b> </p> 
+      <p>Description: <i> {{ todo.description}} </i></p><br/>
+      <p>Due date: <b>{{ todo.duedate}} </b></p>
+    <hr>
+      <p>What would you like to set the status to: </p>
 
-          </select>
-        <input type="submit" value="Update" class="btn btn-info" > 
+      <form action="{{ url_for('update_todo') }}" method="post">
+        <table> <!-- Using a table to make it look tidy-->
+        <tr><td><label for="status">Status: </label></td>
+        <td><input type="hidden" name="id" value="{{ todo.id }}">
+          <select type="option" name="status"  selected="{{todo.status}}"c value="{{todo.status}}">
+              <option value="{{todo.status}}" selected="selected">Select from below</option> <!-- If the user doesn't want to change the item, this will default what was saved-->
+              <option value="To Do">To Do</option>
+              <option value="Doing">Doing</option>
+              <option value="Done">Done</option>
+            </select> <br/> </td></tr>
+        <tr><td><label for="description">Description: </label></td>
+        <td><input type="text" name="description" value ="{{ todo.description }}"></br></td></tr>
+        <tr><td><label for="duedate">Due Date: </label></td>
+        <td><input type="date" name="duedate" value="{{ todo.duedate }}"> </br></td></tr>
+        <tr><td><input type="submit" value="Update" class="btn btn-info" ></td></tr>
+      </table>
       </form>
     </div>
   </div>
   <br>
+  <hr>
    <div class="row">
     <div class="col-md-12">
       <h2>Remove todo ! </h2>
-      <p> Do you wish to remove <b>{{todo.title}} </b> ? </p>
+      <p> Do you wish to remove <b>{{todo.name}} </b> ? </p>
       <form action="{{ url_for('remove_todo') }}" method="post">
         <input type="hidden" name="id" value="{{ todo.id }}">
         <input type="submit" class="btn btn-danger" value="Remove">
