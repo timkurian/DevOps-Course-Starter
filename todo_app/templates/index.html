@@ -10,20 +10,34 @@
   <div class="row">
     <div class="col-md-12">
       <h2>Items</h2>
-      <ul class="list-group mb-4">
+        <table> 
+        <th>Name</th><th>Status&nbsp;</th><th>Description&nbsp;</th><th>Due date</th>
         {% for todo in todos %}
-          <ul>  {{todo.title}} - {{todo.status}} <a class="btn btn-primary" href="/modify/{{ todo.id }}" role="button">Modify</a></ul>
-            <br>
+          <tr> 
+            <td> {{todo.name}}</td>
+            <td> {{todo.status}}</td>
+            <td><small>{{todo.description}}</small></td>
+            <td>{{todo.duedate}}</td>
+            <td><a class="btn btn-primary" href="/modify/{{ todo.id }}" role="button">Modify</a></td>
+          </tr>
         {% endfor %}
-      </ul>
+      </table>
     </div>
   </div>
+  <hr>
   <div class="row">
     <div class="col-md-12">
       <h2>Add a todo ! </h2>
       <form action="{{ url_for('add_todo') }}" method="post">
-        <input type="text" name="title">
-        <input type="submit" class="btn btn-primary" value="Add To-Do" >
+        <table> <!-- Using a table to make it look tidy-->
+        <tr><td><label for="title">Name: </label></td>
+        <td><input type="text" name="title"> <br/> </td></tr>
+        <tr><td><label for="description">Description: </label></td>
+        <td><input type="text" name="description"></br></td></tr>
+        <tr><td><label for="duedate">Due Date: </label></td>
+        <td><input type="date" name="duedate"> </br></td></tr>
+        <tr><td><input type="submit" class="btn btn-primary" value="Add To-Do" ></td></tr>
+      </table>
       </form>
     </div>
   </div>
