@@ -18,9 +18,12 @@
 
       <form action="{{ url_for('update_todo') }}" method="post">
         <table> <!-- Using a table to make it look tidy-->
+        <tr>
+          <td><label for="status">Name: </label></td>
+          <td><input type="text" name="name" value="{{ todo.name }}"></td></tr>
         <tr><td><label for="status">Status: </label></td>
         <td><input type="hidden" name="id" value="{{ todo.id }}">
-          <select type="option" name="status"  selected="{{todo.status}}"c value="{{todo.status}}">
+          <select type="option" name="status"  selected="{{todo.status}}" value="{{todo.status}}">
               <option value="{{todo.status}}" selected="selected">Select from below</option> <!-- If the user doesn't want to change the item, this will default what was saved-->
               <option value="To Do">To Do</option>
               <option value="Doing">Doing</option>

@@ -29,11 +29,13 @@ def add_todo():
 
 @app.route('/update_todo', methods=['POST'])
 def update_todo(): 
-    item = trello_items.get_item(request.form['id'])
-    item.status = request.form['status']
-    item.duedate = request.form['duedate']
-    item.description = request.form['description']
-    trello_items.save_item(item)    
+
+    id = request.form['id']
+    name = request.form['name']
+    status = request.form['status']
+    duedate = request.form['duedate']
+    description = request.form['description']
+    trello_items.save_item(id,name,status,duedate,description)    
     return redirect(url_for('index'))
 
 @app.route('/remove_todo', methods=['POST'])
