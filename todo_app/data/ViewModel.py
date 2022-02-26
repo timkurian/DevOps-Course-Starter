@@ -11,3 +11,8 @@ class ViewModel:
     def doing_items(self):
         
         return [ item for item in self.items if item.status == 'Doing' ]
+    
+    @property
+    def todo_items(self):
+        
+        return [ item for item in self.items if item.status == 'To Do' ]
