@@ -12,7 +12,7 @@
       <h2>Items</h2>
         <table> 
         <th>Name</th><th>Status&nbsp;</th><th>Description&nbsp;</th><th>Due date</th>
-        {% for todo in todos %}
+        {% for todo in view_model.items %}
           <tr> 
             <td> {{todo.name}}</td>
             <td> {{todo.status}}</td>
