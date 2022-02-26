@@ -10,18 +10,45 @@
   <div class="row">
     <div class="col-md-12">
       <h2>Items</h2>
-        <table> 
-        <th>Name</th><th>Status&nbsp;</th><th>Description&nbsp;</th><th>Due date</th>
-        {% for todo in view_model.items %}
+
+      <h3>Todo</h3>
+        <table width="100%"> 
+        <th width="20%">Name</th><th width="40%">Description&nbsp;</th><th width="10%">Due date</th>
+        {% for todo in view_model.todo_items %}
           <tr> 
             <td> {{todo.name}}</td>
-            <td> {{todo.status}}</td>
             <td><small>{{todo.description}}</small></td>
             <td>{{todo.duedate}}</td>
             <td><a class="btn btn-primary" href="/modify/{{ todo.id }}" role="button">Modify</a></td>
           </tr>
         {% endfor %}
       </table>
+      <hr>
+      <h3>Doing</h3>
+      <table width="100%"> 
+        <th width="20%">Name</th><th width="40%">Description&nbsp;</th><th width="10%">Due date</th>
+      {% for todo in view_model.doing_items %}
+        <tr> 
+          <td> {{todo.name}}</td>
+          <td><small>{{todo.description}}</small></td>
+          <td>{{todo.duedate}}</td>
+          <td><a class="btn btn-primary" href="/modify/{{ todo.id }}" role="button">Modify</a></td>
+        </tr>
+      {% endfor %}
+    </table>
+    <hr>
+    <h3>Done</h3>
+    <table width="100%"> 
+      <th width="20%">Name</th><th width="40%">Description&nbsp;</th><th width="10%">Due date</th>
+    {% for todo in view_model.done_items %}
+      <tr> 
+        <td> {{todo.name}}</td>
+        <td><small>{{todo.description}}</small></td>
+        <td>{{todo.duedate}}</td>
+        <td><a class="btn btn-primary" href="/modify/{{ todo.id }}" role="button">Modify</a></td>
+      </tr>
+    {% endfor %}
+  </table>
     </div>
   </div>
   <hr>
